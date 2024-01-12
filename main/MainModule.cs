@@ -13,10 +13,8 @@ namespace InsuranceAssignment.MainMod
     {
         static void Main()
         {
-            // Create an instance of InsuranceServiceImpl
             InsuranceServiceImpl insuranceService = new InsuranceServiceImpl();
 
-            // Display menu options to the user
             while (true)
             {
                 Console.WriteLine("Insurance Management System");
@@ -24,6 +22,7 @@ namespace InsuranceAssignment.MainMod
                 Console.WriteLine("2. Create Policy");
                 Console.WriteLine("3. Update Policy");
                 Console.WriteLine("4. Delete Policy");
+                Console.WriteLine("5. All Policy List");
                 Console.WriteLine("0. Exit");
 
                 Console.Write("Enter your choice: ");
@@ -42,6 +41,9 @@ namespace InsuranceAssignment.MainMod
                         break;
                     case "4":
                         DeletePolicy(insuranceService);
+                        break;
+                    case "5":
+                        GetAllPolicies(insuranceService);
                         break;
                     case "0":
                         Environment.Exit(0);
@@ -81,60 +83,87 @@ namespace InsuranceAssignment.MainMod
 
         static void CreatePolicy(InsuranceServiceImpl insuranceService)
         {
-            // Collect information to create a new policy
+
             Console.Write("Enter Policy ID: ");
-            int policyId = int.Parse(Console.ReadLine()); // Assuming Policy ID is an integer
+            int policyId = int.Parse(Console.ReadLine()); 
             Console.Write("Enter Policy Number: ");
             string policyNumber = Console.ReadLine();
             Console.Write("Enter Coverage Details: ");
             string coverageDetails = Console.ReadLine();
 
-            // Create a new Policy object
+
             Policy newPolicy = new Policy
             {
                 PolicyId = policyId,
                 PolicyNumber = policyNumber,
                 CoverageDetails = coverageDetails
-                // Include other properties as needed
+
             };
 
-            // Call the CreatePolicy method
+
             bool createResult = insuranceService.CreatePolicy(newPolicy);
             Console.WriteLine($"CreatePolicy result: {createResult}");
         }
 
         static void UpdatePolicy(InsuranceServiceImpl insuranceService)
         {
-            // Collect information to update an existing policy
             Console.Write("Enter Policy ID to Update: ");
-            int policyIdToUpdate = int.Parse(Console.ReadLine()); // Assuming Policy ID is an integer
 
-            // Assume you have an updated Policy object for testing purposes
-            Policy updatedPolicy = new Policy
+            if (int.TryParse(Console.ReadLine(), out int policyIdToUpdate))
             {
-                PolicyId = policyIdToUpdate,
-                PolicyNumber = "UpdatedPolicyNumber",
-                CoverageDetails = "UpdatedCoverageDetails"
-                // Include other properties as needed
-            };
+                Console.Write("Enter Updated Policy Number: ");
+                string updatedPolicyNumber = Console.ReadLine();
 
-            // Call the UpdatePolicy method
-            bool updateResult = insuranceService.UpdatePolicy(updatedPolicy);
-            Console.WriteLine($"UpdatePolicy result: {updateResult}");
+                Console.Write("Enter Updated Coverage Details: ");
+                string updatedCoverageDetails = Console.ReadLine();
+
+                Policy updatedPolicy = new Policy
+                {
+                    PolicyId = policyIdToUpdate,
+                    PolicyNumber = updatedPolicyNumber,
+                    CoverageDetails = updatedCoverageDetails
+                };
+
+
+                bool updateResult = insuranceService.UpdatePolicy(updatedPolicy);
+
+                if (updateResult)
+                {
+                    Console.WriteLine("Policy updated successfully!");
+                }
+                else
+                {
+                    Console.WriteLine("Failed to update policy. Please check the inputs and try again.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid input. Please enter a valid Policy ID.");
+            }
         }
+
 
         static void DeletePolicy(InsuranceServiceImpl insuranceService)
         {
             Console.Write("Enter Policy ID to Delete: ");
             if (int.TryParse(Console.ReadLine(), out int policyIdToDelete))
             {
-                // Call the DeletePolicy method
                 bool deleteResult = insuranceService.DeletePolicy(policyIdToDelete);
                 Console.WriteLine($"DeletePolicy result: {deleteResult}");
             }
             else
             {
                 Console.WriteLine("Invalid input. Please enter a valid Policy ID.");
+            }
+        }
+        static void GetAllPolicies(InsuranceServiceImpl insuranceService)
+        {
+            IEnumerable<Policy> policies = insuranceService.getAllPolicies();
+
+            Console.WriteLine("All Policies:");
+            foreach (var policy in policies)
+            {
+                Console.WriteLine(policy);
             }
         }
     }

@@ -23,6 +23,26 @@ namespace InsuranceAssignment.entity
             Policy = policy;
         }
 
+        public int GetClientId()
+        {
+            return ClientId;
+        }
+
+        public string GetClientName()
+        {
+            return ClientName;
+        }
+
+        public string GetContactInfo()
+        {
+            return ContactInfo;
+        }
+
+        public string GetPolicy()
+        {
+            return Policy;
+        }
+
         public override string ToString()
         {
             return $"Client{{ClientId={ClientId}, ClientName='{ClientName}', ContactInfo='{ContactInfo}', Policy='{Policy}'}}";

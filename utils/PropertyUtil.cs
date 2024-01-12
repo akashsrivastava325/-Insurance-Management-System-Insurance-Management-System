@@ -9,7 +9,6 @@ namespace InsuranceAssignment.Util
         {
             try
             {
-                // Read connection string from the configuration file
                 string connectionString = ConfigurationManager.ConnectionStrings["InsuranceManagementSystemConnectionString"].ConnectionString;
                 return connectionString;
             }

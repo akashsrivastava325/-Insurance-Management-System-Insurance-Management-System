@@ -30,6 +30,41 @@ namespace InsuranceAssignment.entity
             ClientId = clientId;
         }
 
+        public int GetClaimId()
+        {
+            return ClaimId;
+        }
+
+        public string GetClaimNumber()
+        {
+            return ClaimNumber;
+        }
+
+        public string GetDateFiled()
+        {
+            return DateFiled;
+        }
+
+        public double GetClaimAmount()
+        {
+            return ClaimAmount;
+        }
+
+        public string GetStatus()
+        {
+            return Status;
+        }
+
+        public string GetPolicy()
+        {
+            return Policy;
+        }
+
+        public int GetClientId()
+        {
+            return ClientId;
+        }
+
         public override string ToString()
         {
             return $"Claim{{ClaimId={ClaimId}, ClaimNumber='{ClaimNumber}', DateFiled='{DateFiled}', ClaimAmount={ClaimAmount}, Status='{Status}', Policy='{Policy}', ClientId={ClientId}}}";

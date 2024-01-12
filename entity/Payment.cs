@@ -22,6 +22,25 @@ namespace InsuranceAssignment.entity
             PaymentAmount = paymentAmount;
             ClientId = clientId;
         }
+        public int GetPaymentId()
+        {
+            return PaymentId;
+        }
+
+        public string GetPaymentDate()
+        {
+            return PaymentDate;
+        }
+
+        public double GetPaymentAmount()
+        {
+            return PaymentAmount;
+        }
+
+        public int GetClientId()
+        {
+            return ClientId;
+        }
 
         public override string ToString()
         {

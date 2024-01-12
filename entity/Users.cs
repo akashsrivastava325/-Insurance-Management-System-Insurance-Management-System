@@ -14,7 +14,25 @@ namespace InsuranceAssignment.entity
         private string Role { get; set; }
 
         public Users() { }
+        public int GetUserId()
+        {
+            return UserId;
+        }
 
+        public string GetUsername()
+        {
+            return Username;
+        }
+
+        public string GetPassword()
+        {
+            return Password;
+        }
+
+        public string GetRole()
+        {
+            return Role;
+        }
         public Users(int userId, string username, string password, string role)
         {
             UserId = userId;
